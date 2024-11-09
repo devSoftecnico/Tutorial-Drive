@@ -3,6 +3,7 @@ import 'package:tutorial_drive_flutter/app/src/presentation/views/create_view.da
 import 'package:tutorial_drive_flutter/app/src/presentation/views/delete_view.dart';
 import 'package:tutorial_drive_flutter/app/src/presentation/views/folder_view.dart';
 import 'package:tutorial_drive_flutter/app/src/presentation/views/update_view.dart';
+import 'package:tutorial_drive_flutter/app/src/presentation/views/upload_view.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -13,9 +14,10 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
+  bool _isUploadView = false;
 
   static final List<Widget> _screens = <Widget>[
-    FolderView(),
+    FolderView(), // Cambiar de Vista por UploadView
     const CreateView(),
     const UpdateView(),
     const DeleteView(),
@@ -24,6 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
+      _isUploadView = false;
     });
   }
 
@@ -37,12 +40,16 @@ class _HomeScreenState extends State<HomeScreen> {
           titleSpacing: 0.0,
           actions: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                setState(() {
+                  _isUploadView = true;
+                });
+              },
               icon: const Icon(Icons.upload_rounded),
             ),
           ],
         ),
-        body: _screens[_selectedIndex],
+        body: _isUploadView ? const UploadView() : _screens[_selectedIndex],
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _selectedIndex,
           onTap: _onItemTapped,

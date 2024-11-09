@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:googleapis/drive/v3.dart' as drive;
@@ -99,6 +101,26 @@ class DriveService {
         print('Error deleting folder: $e');
       }
       return false;
+    }
+  }
+
+  Future<void> uploadFileToDrive(File file, [String? folderId]) async {
+    final driveApi = await connect();
+    final media = drive.Media(file.openRead(), file.lengthSync());
+    final fileMetadata = drive.File()
+      ..name = file.uri.pathSegments.last
+      ..parents = folderId != null ? [folderId] : [parentFolderId]; // Usa el ID de la carpeta si se proporciona
+
+    try {
+      await driveApi.files.create(fileMetadata, uploadMedia: media);
+      if (kDebugMode) {
+        print('File uploaded successfully: ${file.uri.pathSegments.last}');
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        print('Error uploading file: $e');
+      }
+      rethrow;
     }
   }
 }
