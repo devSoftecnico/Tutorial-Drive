@@ -1,0 +1,29 @@
+name: tutorial_drive_flutter
+description: "Tutorial Drive + Flutter."
+publish_to: "none"
+version: 0.1.0
+
+environment:
+  sdk: ^3.5.4
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_slidable: ^3.1.1
+  googleapis: ^13.2.0
+  googleapis_auth: ^1.6.0
+  http: ^1.2.2
+  permission_handler: ^11.3.1
+
+dev_dependencies:
+  flutter_lints: ^4.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - lib/assets/
+    - lib/assets/images/
+    - lib/assets/credentials.json
