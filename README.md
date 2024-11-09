@@ -16,3 +16,7 @@ https://youtu.be/FsIU3iG0Nvg
 
 # Tutorial #5:
 https://youtu.be/huHFverLjx0
+
+# Tutorial #6:
+Pendiente y a la espera de su apoyo para obtener los 1,000 suscriptores
+https://www.youtube.com/@SoftecnicoNetwork
